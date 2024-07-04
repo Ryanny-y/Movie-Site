@@ -1,0 +1,22 @@
+/* HEADER */
+.header .left li, .header .right li{
+  position: relative;
+}
+
+.header .left li::after, .header .right li::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  width: 5px;
+  height: 5px;
+  right: 50%;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: red;
+  opacity: 0;
+  transition: opacity .2s ease-in;
+}
+
+.header .left li:hover::after, .header .right li:hover::after {
+  opacity: 1;
+}
