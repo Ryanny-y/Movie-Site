@@ -15,6 +15,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+  <!-- SWIPER -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 </head>
 <body class="bg-black text-white font-Poppins">
@@ -85,16 +87,93 @@
       </div>
     </section>
 
+    <!-- RECENTLY ADDED -->
     <section class="recently-added">
-      <div class="container text-white">
-        <h1 class="section-title font-semibold text-xl 2xl:text-2xl">Recently Added</h1>
-        
-        <div class="recent-movies">
+      <div class="container text-white flex flex-col items-start">
+        <div class="w-full relative">
+          <h1 class="section-title font-semibold text-xl 2xl:text-2xl w-full">Recently Added</h1>
           
+          <div class="slider-nav flex items-center gap-2 text-white absolute top-0 right-0">
+            <button class="swiper-prev text-white text-lg"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="swiper-next text-white text-lg"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
         </div>
+
+        <div class="swiper recent-movies mt-5 2xl:mt-6 w-full">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <div class="movie flex items-center gap-6">
+                <img src="images/recent-movie.png" alt="" class="block w-16 h-24">
+    
+                <div class="details flex flex-col gap-1 text-sm">
+                  <p class="title">The Flash</p>
+                  <p class="type">Series/S 2/EP 9</p>
+                  <p>11/05/23</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="movie flex items-center gap-6">
+                <img src="images/recent-movie.png" alt="" class="block w-16 h-24">
+    
+                <div class="details flex flex-col gap-1 text-sm">
+                  <p class="title">The Flash</p>
+                  <p class="type">Series/S 2/EP 9</p>
+                  <p>11/05/23</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="movie flex items-center gap-6">
+                <img src="images/recent-movie.png" alt="" class="block w-16 h-24">
+    
+                <div class="details flex flex-col gap-1 text-sm">
+                  <p class="title">The Flash</p>
+                  <p class="type">Series/S 2/EP 9</p>
+                  <p>11/05/23</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="movie flex items-center gap-6">
+                <img src="images/recent-movie.png" alt="" class="block w-16 h-24">
+    
+                <div class="details flex flex-col gap-1 text-sm">
+                  <p class="title">The Flash</p>
+                  <p class="type">Series/S 2/EP 9</p>
+                  <p>11/05/23</p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="movie flex items-center gap-6">
+                <img src="images/recent-movie.png" alt="" class="block w-16 h-24">
+    
+                <div class="details flex flex-col gap-1 text-sm">
+                  <p class="title">The Flash</p>
+                  <p class="type">Series/S 2/EP 9</p>
+                  <p>11/05/23</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+       
       </div>
     </section>
 
   </main>
+
+  <!-- SWIPER -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- JAVASCRIPT -->
+  <script type="module" src="scripts/landingpage.js"></script>
+
 </body>
 </html>
