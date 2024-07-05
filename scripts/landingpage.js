@@ -1,6 +1,6 @@
 import { sliders } from "./utils/sliders.js";
 import { fetchMovieData } from "../data/fetchMovie.js";
-import { formatDate } from "./utils/formatDate.js";
+import { formatDate, formatRunTime, formatVote } from "./utils/formatDate.js";
 
 async function renderLandingPage() {
   
@@ -41,6 +41,9 @@ async function trendingMovies() {
   const trendingMovieHTML = await Promise.all(filteredList.map(async movie => {
     const data = await fetchMovieData(`movie/${movie.id}`);
     const genres = data.genres.slice(0, 3);
+    const { runtime, vote_average: voteAverage } = data;
+    const formatTime = formatRunTime(runtime);
+
     const genreNames = genres.map(genre => {
       return genre.name;
     })
@@ -50,9 +53,12 @@ async function trendingMovies() {
 
     return `
     <div class="swiper-slide" style="height: auto !important;">
-      <div class="movie flex flex-col gap-2 justify-between h-full">
-        <div class="h-80 w-full">
-          <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-sm">
+      <div class="movie flex flex-col gap-2 justify-between h-full relative">
+        <p class="absolute top-3 left-3 text-xs"><i class="far fa-clock"></i> ${formatTime.hours}:${formatTime.minutes}:00</p>
+        <p class="absolute top-3 right-3 text-xs"><i class="fa-solid fa-star"></i> ${formatVote(voteAverage)}</p>
+
+        <div class="h-72 w-full">
+          <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
         </div>
     
         <div class="detail flex flex-col gap-2 justify-between flex-grow">
@@ -69,6 +75,8 @@ async function trendingMovies() {
 
   document.querySelector('.trending-movies .swiper-wrapper').innerHTML = trendingMovieHTML.join('');
   sliders.trendingSlider();
-}
+} 
+
+
 
 renderLandingPage();
