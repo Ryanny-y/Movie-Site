@@ -20,3 +20,13 @@
 .header .left li:hover::after, .header .right li:hover::after {
   opacity: 1;
 }
+
+/* NOW PLAYING */
+.swiper-button-disabled {
+  display: none;
+}
+
+/* TRENDING */
+.swiper-slide {
+  height: auto;
+}
