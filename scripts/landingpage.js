@@ -6,6 +6,7 @@ async function renderLandingPage() {
   
   nowPlayingMovies();
   trendingMovies();
+  popularMovies();
 };
 
 async function nowPlayingMovies() {
@@ -15,7 +16,7 @@ async function nowPlayingMovies() {
 
   const nowPlayingHTML = filteredList.map(movie => {
     return `
-    <div class="swiper-slide" style="height: auto !important; max-height: 80px;">
+    <div class="swiper-slide" style="height: auto !important;">
       <div class="movie flex items-center gap-6 h-full">
         <div class="w-16 h-24">
           <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-sm">
@@ -41,9 +42,10 @@ async function trendingMovies() {
   const trendingMovieHTML = await Promise.all(filteredList.map(async movie => {
     const data = await fetchMovieData(`movie/${movie.id}`);
     const genres = data.genres.slice(0, 3);
-    const { runtime, vote_average: voteAverage } = data;
+    const { runtime } = data;
     const formatTime = formatRunTime(runtime);
 
+    console.log(movie);
     const genreNames = genres.map(genre => {
       return genre.name;
     })
@@ -54,8 +56,8 @@ async function trendingMovies() {
     return `
     <div class="swiper-slide" style="height: auto !important;">
       <div class="movie flex flex-col gap-2 justify-between h-full relative">
-        <p class="absolute top-3 left-3 text-xs"><i class="far fa-clock"></i> ${formatTime.hours}:${formatTime.minutes}:00</p>
-        <p class="absolute top-3 right-3 text-xs"><i class="fa-solid fa-star"></i> ${formatVote(voteAverage)}</p>
+        <p class="absolute top-3 left-3 text-xs"><i class="far fa-clock"></i> ${formatTime}</p>
+        <p class="absolute top-3 right-3 text-xs"><i class="fa-solid fa-star"></i> ${formatVote(movie['vote_average'])}</p>
 
         <div class="h-72 w-full">
           <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
@@ -77,6 +79,36 @@ async function trendingMovies() {
   sliders.trendingSlider();
 } 
 
+async function popularMovies() {
+  const getMovie = await fetchMovieData('movie/popular');
+  const movieList = getMovie.results;
+  const filteredList = movieList.slice(0, 12);
+  
+  const popularMovieHTML = await Promise.all(filteredList.map(async movie => {
+    const data = await fetchMovieData(`movie/${movie.id}`);
+    const { runtime } = data;
+    
+    return `
+    <div class="swiper-slide" style="height: auto !important;">
+      <div class="movie flex flex-col gap-2 justify-between h-full relative">
+        <div class="h-80 w-full">
+          <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
+        </div>
+    
+        <div class="detail flex items-start justify-between flex-grow flex-wrap">
+          <p class="title font-semibold text-xl 2xl:text-2xl">${movie.title}</p>
+
+          <div class="genre text-end text-xs flex items-center pt-2 gap-2">
+            <p><i class="fa-solid fa-star"></i> ${formatVote(movie['vote_average'])}</p>
+            <p><i class="far fa-clock"></i> ${formatRunTime(runtime)}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }));
+  document.querySelector('.swiper.popular-movies .swiper-wrapper').innerHTML = popularMovieHTML.join('');
+  sliders.popularMovieSlider()
+}
 
 
 renderLandingPage();

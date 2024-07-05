@@ -6,7 +6,7 @@ export const formatRunTime = (runtime) => {
   let hours = Math.floor(runtime / 60);
   let minutes = runtime % 60;
 
-  return { hours, minutes};
+  return `${hours}:${minutes}:00`;
 }
 
 export const formatVote = (vote) => vote.toFixed(1); 

@@ -22,7 +22,7 @@
 <body class="bg-black text-white font-Poppins">
   
   <!-- HEADER -->
-  <section class="header flex items-center w-full h-20 2xl:h-28 fixed top-0 left-0 right-0 z-50">
+  <section class="header bg-black flex items-center w-full h-20 2xl:h-28 fixed top-0 left-0 right-0 z-50">
     <header class="container flex items-center justify-center gap-6 text-sm 2xl:text-base text-nowrap">
       <div class="left">
         <ul class="flex items-center gap-4">
@@ -131,7 +131,7 @@
     </section>
 
     <!-- POPULAR MOVIES -->
-    <div class="section popular-movies">
+    <section class="section popular-movies">
       <div class="container text-white">
         <div class="w-full relative">
           <h1 class="font-bold text-xl 2xl:text-2xl">Popular Movies</h1>
@@ -142,13 +142,37 @@
           </div>
         </div>
 
-        
+        <div class="swiper popular-movies mt-5 2xl:mt-6">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+          </div>
+        </div>
 
       </div>
-    </div>
+    </section>
 
     <!-- POPULAR SERIES -->
+    <section class="section popular-series">
+      <div class="container text-white">
+        <div class="w-full relative">
+          <h1 class="font-bold text-xl 2xl:text-2xl">Popular Series</h1>
 
+          <div class="slider-nav flex items-center gap-2 text-white absolute top-0 right-0">
+            <button class="swiper-prev text-white text-lg"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="swiper-next text-white text-lg"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <div class="swiper popular-series mt-5 2xl:mt-6">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+          </div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- RECOMMENDATION -->
   </main>

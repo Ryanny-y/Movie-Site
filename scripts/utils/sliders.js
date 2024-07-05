@@ -9,6 +9,11 @@ class Sliders {
     this.initSlider(data);
   }
 
+  popularMovieSlider() {
+    const data = this.data('.popular-movies', '.swiper.popular-movies', 4);
+    this.initSlider(data);
+  }
+
   data(section, wrapper, preview) {
     return {
       section,
