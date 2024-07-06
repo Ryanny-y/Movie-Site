@@ -2,11 +2,13 @@ import { sliders } from "./utils/sliders.js";
 import { fetchMovieData } from "../data/fetchMovie.js";
 import { formatDate, formatRunTime, formatVote } from "./utils/formatDate.js";
 
-async function renderLandingPage() {
+function renderLandingPage() {
   
   nowPlayingMovies();
   trendingMovies();
   popularMovies();
+  popularSeries();
+  discoverMovie();
 };
 
 async function nowPlayingMovies() {
@@ -45,7 +47,6 @@ async function trendingMovies() {
     const { runtime } = data;
     const formatTime = formatRunTime(runtime);
 
-    console.log(movie);
     const genreNames = genres.map(genre => {
       return genre.name;
     })
@@ -110,5 +111,66 @@ async function popularMovies() {
   sliders.popularMovieSlider()
 }
 
+async function popularSeries() {
+  const getSeries = await fetchMovieData('tv/popular');
+  const seriesList = getSeries.results;
+  const filteredList = seriesList.slice(0, 12);
+  
+  const popularSeriesHTML = await Promise.all(filteredList.map(async series => {
+    const data = await fetchMovieData(`tv/${series.id}`);
+    const { number_of_seasons: season, number_of_episodes: episodes } = data;
+    
+    return `
+    <div class="swiper-slide" style="height: auto !important;">
+      <div class="series flex flex-col gap-2 justify-between h-full relative">
+        <div class="h-80 w-full">
+          <img src="https://image.tmdb.org/t/p/w500${series['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
+        </div>
+    
+        <div class="detail flex items-start justify-between flex-grow flex-wrap">
+          <p class="title font-semibold text-xl 2xl:text-2xl">${series.name}</p>
+
+          <div class="genre text-end text-xs flex items-center pt-2 gap-2">
+            <p><i class="fa-solid fa-star"></i> ${formatVote(series['vote_average'])}</p>
+            <p>Series/S ${season}/EP ${episodes}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }));
+  document.querySelector('.swiper.popular-series .swiper-wrapper').innerHTML = popularSeriesHTML.join('');
+
+  sliders.popularSeriesSlider();
+}
+
+async function discoverMovie() {
+  const getMovies = await fetchMovieData('discover/movie');
+  const movieList = getMovies.results;
+
+  const discoverMovieHTML = await Promise.all(movieList.map(async movie => {
+    const data = await fetchMovieData(`movie/${movie.id}`);
+    const { runtime } = data;
+    
+    return `
+    <div class="swiper-slide" style="height: auto !important;">
+      <div class="movie flex flex-col gap-2 justify-between h-full relative">
+        <div class="h-80 w-full">
+          <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
+        </div>
+    
+        <div class="detail flex items-start justify-between flex-grow flex-wrap">
+          <p class="title font-semibold text-xl 2xl:text-2xl">${movie.title}</p>
+
+          <div class="genre text-end text-xs flex items-center pt-2 gap-2">
+            <p><i class="fa-solid fa-star"></i> ${formatVote(movie['vote_average'])}</p>
+            <p><i class="far fa-clock"></i> ${formatRunTime(runtime)}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }));
+  document.querySelector('.swiper.discover-movie .swiper-wrapper').innerHTML = discoverMovieHTML.join('');
+  sliders.discoverMovieSlider();
+}
 
 renderLandingPage();

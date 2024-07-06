@@ -14,11 +14,22 @@ class Sliders {
     this.initSlider(data);
   }
 
-  data(section, wrapper, preview) {
+  popularSeriesSlider() {
+    const data = this.data('.popular-series', '.swiper.popular-series', 4);
+    this.initSlider(data);
+  }
+
+  discoverMovieSlider() {
+    const data = this.data('.discover', '.swiper.discover-movie', 4, true);
+    this.initSlider(data);
+  }
+
+  data(section, wrapper, preview, style = false) {
     return {
       section,
       wrapper,
-      preview
+      preview,
+      style
     }
   }
 
@@ -40,8 +51,14 @@ class Sliders {
           spaceBetween: 40,
         },
       },
+      ...(data.style && {
+        grid: {
+          rows: 2,
+          fill: 'rows',
+        },
+      })
     });
-
+    
     nowPlayingSwiper.on('slideChange', () => {
       const sliderNav = document.querySelector(`${data.section} .slider-nav`);
       const viewAllButton = sliderNav.querySelector('.view-all');
