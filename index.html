@@ -45,11 +45,12 @@
   
   <main class="flex flex-col gap-18 pt-20 2xl:pt-28">
     <!-- HERO SECTION -->
-    <section class="hero relative w-full h-height-2 2xl:h-height-1">
-      <div class="container h-full flex items-end py-5">
-        <img src="images/avatar-img.png" alt="" class="absolute w-full top-0 bottom-0 h-full right-0 left-0 -z-10 bg-contain">
+    <section class="hero relative w-full h-height-2 2xl:h-height-1" style="background: url('images/avatar-img.png') center / cover no-repeat;">
+      <div class="absolute top-0 h-full left-0 w-full" style="background: rgba(0,0,0,.2);"></div>
 
-        <div class="watch-btns flex items-center gap-11 absolute top-72 2xl:top-80 left-1/2 -translate-x-1/2">
+      <div class="absolute top-0 left-0 right-0 container h-full flex flex-col justify-end py-5 gap-20 z-20">
+
+        <div class="watch-btns flex items-center gap-11 justify-center">
           <button class="flex items-center justify-center gap-2 bg-red text-white p-5 font-bold rounded-md">
             <p class="text-nowrap">Watch Now</p>
             <i class="fa-solid fa-circle-play text-white text-xl"></i>
@@ -61,10 +62,10 @@
           </button>
         </div>
 
-        <div class="movie-details flex flex-col gap-3 w-1/2">
+        <div class="movie-details flex flex-col gap-3 w-full lg:w-1/2">
           <h1 class="title font-bold text-3xl">Avatar: The Way of Water</h1>
 
-          <div class="other flex items-center gap-4">
+          <div class="other flex flex-col lg:flex-row lg:items-center gap-4">
             <div class="genre font-bold text-sm 2xl:text-base flex items-center gap-2">
               <button class="text-black bg-white p-2.5 rounded-full">Action</button>
               <button class="text-black bg-white p-2.5 rounded-full">Adventure</button>
