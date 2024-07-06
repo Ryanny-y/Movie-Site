@@ -2,7 +2,8 @@
 module.exports = {
   content: [
     '*.{html,js}',
-    'scripts/*{html,js}'
+    'scripts/*{html,js}',
+    'page/*{html,js}'
   ],
   theme: {
     container: {

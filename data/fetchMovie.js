@@ -7,7 +7,14 @@ export async function fetchMovieData(subdir) {
     }
   };
 
-  const response= await fetch(`https://api.themoviedb.org/3/${subdir}`, options);
-  const movies = await response.json();
-  return movies;
+  try {
+    const response= await fetch(`https://api.themoviedb.org/3/${subdir}`, options);
+    if(!response.ok) {
+      throw new Error('Failed to Fetch Data!')
+    }
+    const movies = await response.json();
+    return movies;
+  } catch (err) {
+    console.log(err);
+  }
 }

@@ -64,17 +64,9 @@ class Sliders {
       const viewAllButton = sliderNav.querySelector('.view-all');
   
       if (nowPlayingSwiper.isEnd) {
-        if (!viewAllButton) {
-          const viewBtn = document.createElement('a');
-          viewBtn.href = '';
-          viewBtn.classList.add('view-all');
-          viewBtn.textContent = 'View All';
-          sliderNav.appendChild(viewBtn);
-        }
+        viewAllButton.classList.remove('hidden');
       } else {
-        if (viewAllButton) {
-          viewAllButton.remove();
-        }
+        viewAllButton.classList.add('hidden');
       }
     });
   }
