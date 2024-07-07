@@ -1,6 +1,6 @@
 class Sliders {
-  nowPlayingSlider() {
-    const data = this.data('.now-playing', '.swiper.now-playing-movies', 4)
+  nowPlayingSlider(preview, gap) {
+    const data = this.data('.now-playing', '.swiper.now-playing-movies', preview, gap)
     this.initSlider(data);
   };
 
@@ -24,11 +24,12 @@ class Sliders {
     this.initSlider(data);
   }
 
-  data(section, wrapper, preview, style = false) {
+  data(section, wrapper, preview, gap = 40, style = false) {
     return {
       section,
       wrapper,
       preview,
+      gap,
       style
     }
   }
@@ -48,7 +49,7 @@ class Sliders {
         },
         768: {
           slidesPerView: data.preview,
-          spaceBetween: 40,
+          spaceBetween: data.gap,
         },
       },
       ...(data.style && {

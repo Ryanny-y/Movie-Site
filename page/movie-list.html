@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+  <!-- STYLES -->
+  <link rel="stylesheet" href="../src/output.css">
+  <link rel="stylesheet" href="../src/styles/landing-page.css">
+
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- SWIPER -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body class="bg-black text-white font-Poppins pb-20 w-full">
+
+  <!-- HEADER -->
+  <section class="header bg-black flex items-center w-full py-5 2xl:h-28 fixed top-0 left-0 right-0 z-50">
+    <header class="container flex flex-col-reverse md:flex-row items-center justify-end gap-6 text-sm 2xl:text-base text-nowrap">
+      <div class="left">
+        <ul class="flex items-center gap-4 flex-wrap sm:flex-nowrap">
+          <li><a href="#">Home</a></li>
+          <li><a href="page/movie-list.html">Movie</a></li>
+          <li><a href="page/tv-list.html">Tv Series</a></li>
+          <li><a href="">Genre</a></li>
+          <li><a href="">Country</a></li>
+        </ul>
+      </div>
+
+      <div class="center w-full flex items-center justify-between bg-white search-bar rounded-full py-1 md:py-2 2xl:py-3 px-6 sm:w-100 text-black">
+        <input type="text" placeholder="Search movies....." class="outline-none placeholder:text-black">
+        <i class="fa-solid fa-magnifying-glass text-lg 2xl:text-xl"></i>
+      </div>
+
+    </header>
+  </section>
+
+  <main class="flex flex-col gap-5 pt-20 2xl:pt-28">
+    <!-- TITLE -->
+    <div class="title container">
+      <h1 class="text-3xl font-bold">Movies</h1>
+    </div>
+
+    <!-- NOW PLAYING MOVIES  -->
+    <section class="now-playing">
+      <div class="container text-white flex flex-col items-start">
+        <div class="w-full relative">
+          <h1 class="section-title font-semibold text-xl 2xl:text-2xl w-full">Now Playing Movies</h1>
+          
+          <div class="slider-nav flex items-center gap-2 text-white absolute top-0 right-0">
+            <button class="swiper-prev text-white text-lg"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="swiper-next text-white text-lg"><i class="fa-solid fa-chevron-right"></i></button>
+            <a href="page/all-movies.html?content=now-playing-movies&page=1" class="view-all hidden">View All</a>
+          </div>
+        </div>
+
+        <div class="swiper now-playing-movies mt-5 2xl:mt-6 w-full">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+  </main>
+
+  <!-- SWIPER -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- JAVASCRIPT -->
+  <script type="module" src="../scripts/page/movieList.js"></script>
+
+</body>
+</html>

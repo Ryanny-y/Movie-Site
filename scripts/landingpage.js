@@ -33,7 +33,7 @@ async function nowPlayingMovies() {
   }).join('');
 
   document.querySelector('.now-playing-movies .swiper-wrapper').innerHTML = nowPlayingHTML;
-  sliders.nowPlayingSlider();
+  sliders.nowPlayingSlider(4);
 }
 
 async function trendingMovies() {

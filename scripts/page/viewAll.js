@@ -1,5 +1,5 @@
-import { fetchMovieData } from '../data/fetchMovie.js';
-import { formatVote, formatRunTime } from './utils/formatDate.js'; 
+import { fetchMovieData } from '../../data/fetchMovie.js';
+import { formatVote, formatRunTime } from '../utils/formatDate.js'; 
 
 function renderContentMovies() {
   const url = new URL(window.location.href);
