@@ -25,7 +25,7 @@
   <section class="header bg-black flex items-center w-full py-5 2xl:h-28 fixed top-0 left-0 right-0 z-50">
     <header class="container flex flex-col-reverse md:flex-row items-center justify-end gap-6 text-sm 2xl:text-base text-nowrap">
       <div class="left">
-        <ul class="flex items-center gap-4">
+        <ul class="flex items-center gap-4 flex-wrap sm:flex-nowrap">
           <li><a href="#">Home</a></li>
           <li><a href="">Movie</a></li>
           <li><a href="">Tv Series</a></li>
@@ -35,7 +35,7 @@
         </ul>
       </div>
 
-      <div class="center flex items-center justify-between bg-white search-bar rounded-full py-1 md:py-2 2xl:py-3 px-6 w-100 text-black">
+      <div class="center w-full flex items-center justify-between bg-white search-bar rounded-full py-1 md:py-2 2xl:py-3 px-6 sm:w-100 text-black">
         <input type="text" placeholder="Search movies....." class="outline-none placeholder:text-black">
         <i class="fa-solid fa-magnifying-glass text-lg 2xl:text-xl"></i>
       </div>
@@ -48,9 +48,9 @@
     <section class="hero relative w-full h-height-2 2xl:h-height-1" style="background: url('images/avatar-img.png') center / cover no-repeat;">
       <div class="absolute top-0 h-full left-0 w-full" style="background: rgba(0,0,0,.2);"></div>
 
-      <div class="absolute top-0 left-0 right-0 container h-full flex flex-col justify-end py-5 gap-20 z-20">
+      <div class="absolute top-0 left-0 right-0 container h-full flex flex-col justify-end py-5 gap-5 sm:gap-20 z-20">
 
-        <div class="watch-btns flex items-center gap-11 justify-center">
+        <div class="watch-btns flex flex-wrap items-center gap-5 md:gap-11 justify-center">
           <button class="flex items-center justify-center gap-2 bg-red text-white p-5 font-bold rounded-md">
             <p class="text-nowrap">Watch Now</p>
             <i class="fa-solid fa-circle-play text-white text-xl"></i>
@@ -66,7 +66,7 @@
           <h1 class="title font-bold text-3xl">Avatar: The Way of Water</h1>
 
           <div class="other flex flex-col lg:flex-row lg:items-center gap-4">
-            <div class="genre font-bold text-sm 2xl:text-base flex items-center gap-2">
+            <div class="genre font-bold text-xs sm:text-base 2xl:text-base flex items-center gap-2">
               <button class="text-black bg-white p-2.5 rounded-full">Action</button>
               <button class="text-black bg-white p-2.5 rounded-full">Adventure</button>
               <button class="text-black bg-white p-2.5 rounded-full">Scient Fiction</button>
