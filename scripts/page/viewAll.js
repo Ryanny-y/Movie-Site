@@ -28,7 +28,6 @@ async function displayShow(subdir, pageNumber) {
 
   const getShow = await fetchMovieData(`${subdir}?${lang}&page=${pageNumber}`);
   const showResult = getShow.results;
-  console.log(getShow);
   const showWrapperHTML = await Promise.all(showResult.map(async show => {
     const detail = await fetchMovieData(`${isSeries ? 'tv' : 'movie'}/${show.id}`)
     const title = isSeries ? show.name : show.title;
@@ -51,13 +50,38 @@ async function displayShow(subdir, pageNumber) {
     </div>`
   }));
 
-  
   document.querySelector('.show-container').innerHTML = showWrapperHTML.join('');
-
+  controlPage(pageNumber);
 }
 
 function toTitleCase(str) {
   return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+function controlPage(pageNumber) {
+  const pageNumberEl = document.querySelector('.page-number');
+  const prevBtn = document.querySelector('.prev-page-btn');
+  const nextBtn = document.querySelector('.next-page-btn');
+  pageNumberEl.textContent = pageNumber;
+  const url = new URL(window.location.href);
+  const searchParams = url.searchParams;
+
+  nextBtn.addEventListener('click', () => {
+    const nextPage = Number(pageNumber) + 1;
+    searchParams.set('page', nextPage);
+    url.search = searchParams.toString();
+    window.location.href = url.toString();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if(pageNumber > 1) {
+      const prevPage = Number(pageNumber) - 1;
+      searchParams.set('page', prevPage);
+      url.search = searchParams.toString();
+      window.location.href = url.toString();
+    }
+  });
+
 }
 
 window.addEventListener('load', () => {
