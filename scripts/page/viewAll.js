@@ -1,17 +1,34 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatVote, formatRunTime } from '../utils/formatDate.js'; 
 
+const subdirectories = {
+  'now-playing-movies': 'movie/now_playing',
+  'trending-movies': 'trending/movie/week',
+  'popular-movies': 'movie/popular',
+  'popular-series': 'tv/popular',
+  'discover-movies': 'discover/movie',
+  'top-rated-movies': 'movie/top_rated',
+  'upcoming-movies': 'movie/upcoming',
+  'airing-today-tv': 'tv/airing_today',
+  'on-the-air-tv': 'tv/on_the_air',
+  'popular-tv': 'tv/popular',
+  'top-rated-tv': 'tv/top_rated'
+};
+
 function renderContentMovies() {
   const url = new URL(window.location.href);
   const params = url.searchParams;
   const contentParam = params.get('content');
-  const pageNumber = params.get('page')
-  const subdir = contentParam === 'now-playing-movies' ? 'movie/now_playing' 
-    : contentParam === 'trending-movies' ? 'trending/movie/week'
-    : contentParam === 'popular-movies' ? 'movie/popular'
-    : contentParam === 'popular-series' ? 'tv/popular' 
-    : contentParam === 'discover-movies' ? 'discover/movie'
-    : '';
+  const pageNumber = params.get('page');
+  let subdir = '';
+  for(let dir in subdirectories) {
+    if(contentParam === dir) {
+      subdir = subdirectories[dir];
+      break;
+    } else {
+      subdir = '';
+    }
+  }
 
   displayShow(subdir, pageNumber);
   const title = toTitleCase(contentParam);

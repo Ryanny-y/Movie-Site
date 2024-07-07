@@ -2,8 +2,9 @@
 module.exports = {
   content: [
     '*.{html,js}',
+    'page/*{html,js}',
     'scripts/*{html,js}',
-    'page/*{html,js}'
+    'scripts/**/*{html,js}'
   ],
   theme: {
     container: {
