@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genre List</title>
+   <!-- STYLES -->
+   <link rel="stylesheet" href="../src/output.css">
+   <link rel="stylesheet" href="../src/styles/view-all.css">
+ 
+   <!-- Font awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+   <!-- GOOGLE FONTS -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black text-white font-Poppins pb-20 w-full"> 
+  <!-- HEADER -->
+  <section class="header bg-black flex items-center w-full py-5 2xl:h-28 fixed top-0 left-0 right-0 z-50">
+    <header class="container flex flex-col-reverse md:flex-row items-center justify-end gap-6 text-sm 2xl:text-base text-nowrap">
+      <div class="left">
+        <ul class="flex items-center gap-4 flex-wrap sm:flex-nowrap">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="#">Movie</a></li>
+          <li><a href="./tv-list.html">Tv Series</a></li>
+          <li><a href="">Genre</a></li>
+          <li><a href="">Country</a></li>
+        </ul>
+      </div>
+
+      <div class="center w-full flex items-center justify-between bg-white search-bar rounded-full py-1 md:py-2 2xl:py-3 px-6 sm:w-100 text-black">
+        <input type="text" placeholder="Search movies....." class="outline-none placeholder:text-black">
+        <i class="fa-solid fa-magnifying-glass text-lg 2xl:text-xl"></i>
+      </div>
+
+    </header>
+  </section>
+  
+  <main class="flex flex-col gap-10 pt-20 2xl:pt-28">
+    <!-- MOVIE GENRE -->
+    <section class="movie-genres">
+      <div class="container flex flex-col gap-4">
+        <h1 class="text-3xl font-bold">MOVIE GENRES</h1>
+
+        <div class="genre-btns flex items-center gap-3 flex-wrap">
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TV SERIE GENRE -->
+     <section class="tv-genres">
+      <div class="container flex flex-col gap-4">
+        <h1 class="text-3xl font-bold">TV SERIES GENRES</h1>
+
+        <div class="genre-btns flex items-center gap-3 flex-wrap">
+          
+        </div>
+      </div>
+     </section>
+
+  </main>
+  
+  <!-- JAVASCRIPT -->
+  <script type="module" src="../scripts/page/genreList.js"></script>
+</body>
+</html>
