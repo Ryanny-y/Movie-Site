@@ -13,10 +13,10 @@ function renderContentMovies() {
     : contentParam === 'discover-movies' ? 'discover/movie'
     : '';
 
+  displayShow(subdir, pageNumber);
   const title = toTitleCase(contentParam);
   document.querySelector('.main-title h1').textContent = title;
   
-  displayShow(subdir, pageNumber);
 }
 
 async function displayShow(subdir, pageNumber) {
@@ -60,6 +60,6 @@ function toTitleCase(str) {
   return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   renderContentMovies();
 })

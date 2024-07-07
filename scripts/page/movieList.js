@@ -2,22 +2,73 @@ import { sliders } from '../utils/sliders.js';
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatRunTime, formatVote } from '../utils/formatDate.js';
 
-function renderMovieList() {
-
-  nowPlayingMovies();
-}
-
 const dataList = [
   {
-    title: ''
+    sectionClass: 'now-playing',
+    title: 'Now Playing Movies',
+    content: 'now-playing-movies',
+    subdir: 'movie/now_playing?language=en-US&page=1',
+  },
+  {
+    sectionClass: 'popular',
+    title: 'Popular Movies',
+    content: 'popular-movies',
+    subdir: 'movie/popular?language=en-US&page=1',
+  },
+  {
+    sectionClass: 'top-rated',
+    title: 'Top Rated Movies',
+    content: 'top-rated-movies',
+    subdir: 'movie/top_rated?language=en-US&page=1',
+  },
+  {
+    sectionClass: 'upcoming',
+    title: 'Upcoming Movies',
+    content: 'upcoming-movies',
+    subdir: 'movie/upcoming?language=en-US&page=1'
   }
 ]
 
-async function nowPlayingMovies() {
-  const getMovie = await fetchMovieData('movie/now_playing');
+function renderMovieList() {
+  dataList.forEach(async data => {
+    await renderSectionContent(data);
+  });
+}
+
+async function renderSectionContent(data) {
+  const swiperHTML = await nowPlayingMovies(data);
+
+  const sectionContentHTML = `
+    <div class="container text-white flex flex-col items-start">
+      <div class="w-full relative">
+        <h1 class="section-title font-semibold text-xl 2xl:text-2xl w-full">${data.title}</h1>
+        
+        <div class="slider-nav flex items-center gap-2 text-white absolute top-0 right-0">
+          <button class="swiper-prev text-white text-lg"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="swiper-next text-white text-lg"><i class="fa-solid fa-chevron-right"></i></button>
+          <a href="./all-movies.html?content=${data.content}&page=1" class="view-all hidden">View All</a>
+        </div>
+      </div>
+
+      <div class="swiper ${data.content} mt-5 2xl:mt-6 w-full">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+            ${swiperHTML}
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.querySelector(`.${data.sectionClass}`).innerHTML = sectionContentHTML;
+  sliders.movieList(data, 5, 20);
+}
+
+async function nowPlayingMovies(data) {
+  const getMovie = await fetchMovieData(data.subdir);
   const movieList = getMovie.results;
   
-  const nowPlayingHTML = await Promise.all(movieList.map(async movie => {
+  const swiperSlides = await Promise.all(movieList.map(async movie => {
     const detail = await fetchMovieData(`movie/${movie.id}`);
 
     return `
@@ -39,8 +90,7 @@ async function nowPlayingMovies() {
     </div>
     `
   }));
-  document.querySelector('.now-playing-movies .swiper-wrapper').innerHTML = nowPlayingHTML.join('')
-  sliders.nowPlayingSlider(5, 20)
+  return swiperSlides.join('');
 }
 
 window.addEventListener('DOMContentLoaded', () => {

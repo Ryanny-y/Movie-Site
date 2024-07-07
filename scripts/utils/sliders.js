@@ -20,7 +20,12 @@ class Sliders {
   }
 
   discoverMovieSlider() {
-    const data = this.data('.discover', '.swiper.discover-movie', 4, true);
+    const data = this.data('.discover', '.swiper.discover-movie', 4, 40,true);
+    this.initSlider(data);
+  }
+
+  movieList(detail, preview, gap) {
+    const data = this.data(`.${detail.sectionClass}`, `.swiper.${detail.content}`, preview, gap)
     this.initSlider(data);
   }
 
