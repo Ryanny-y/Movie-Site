@@ -1,4 +1,5 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
+import { searchBar } from '../utils/searchBar.js';
 
 async function renderCountryList() {
   const countryList = await fetchMovieData('configuration/countries');
@@ -24,6 +25,8 @@ async function renderCountryList() {
       window.location.href = `./show-by-country.html?country=${country}&country-code=${countryCode}&page=1`;
     })
   })
+
+  searchBar();
 };
 
 

@@ -17,23 +17,26 @@
 </head>
 <body class="bg-black text-white font-Poppins pb-20 w-full">
    <!-- HEADER -->
-   <section class="header bg-black flex items-center w-full py-5 2xl:h-28 fixed top-0 left-0 right-0 z-50">
-    <header class="container flex flex-col-reverse md:flex-row items-center justify-end gap-6 text-sm 2xl:text-base text-nowrap">
-      <div class="left">
+   <section class="header bg-black py-5 2xl:h-28 fixed top-0 left-0 right-0 z-50">
+    <header class="container flex flex-col-reverse md:flex-row items-center justify-end gap-6 text-sm 2xl:text-base">
+      <div class="left text-nowrap">
         <ul class="flex items-center gap-4 flex-wrap sm:flex-nowrap">
           <li><a href="../index.html">Home</a></li>
-          <li><a href="#">Movie</a></li>
+          <li><a href="./movie-list.html">Movie</a></li>
           <li><a href="./tv-list.html">Tv Series</a></li>
-          <li><a href="">Genre</a></li>
-          <li><a href="">Country</a></li>
+          <li><a href="./genre-list.html">Genre</a></li>
+          <li><a href="./country-list.html">Country</a></li>
         </ul>
       </div>
 
-      <div class="center w-full flex items-center justify-between bg-white search-bar rounded-full py-1 md:py-2 2xl:py-3 px-6 sm:w-100 text-black">
-        <input type="text" placeholder="Search movies....." class="outline-none placeholder:text-black">
-        <i class="fa-solid fa-magnifying-glass text-lg 2xl:text-xl"></i>
+      <div class="center w-full flex items-center justify-between bg-white search-bar rounded-full py-1 md:py-2 2xl:py-3 px-6 sm:w-100 text-black relative">
+        <input type="text" placeholder="Search movies..." class="search-input outline-none placeholder:text-black w-full">
+        <i class="search-btn fa-solid fa-magnifying-glass text-lg 2xl:text-xl"></i>
+        
+        <div class="searched-movies absolute top-10 left-0 right-0 rounded-md gap-1 flex flex-col hidden">
+          
+        </div>
       </div>
-
     </header>
   </section>
 

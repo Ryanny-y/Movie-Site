@@ -1,9 +1,11 @@
 import { fetchMovieData } from "../../data/fetchMovie.js";
 import { controlPage } from '../utils/pageControl.js';
 import { formatVote, formatRunTime } from "../utils/formatDate.js";
+import { searchBar } from '../utils/searchBar.js';
 
 function showByGenre() {
   renderShow();
+  searchBar();
 }
 
 async function renderShow() {

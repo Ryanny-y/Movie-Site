@@ -1,6 +1,7 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatVote, formatRunTime } from '../utils/formatDate.js';
 import { controlPage } from '../utils/pageControl.js';
+import { searchBar } from '../utils/searchBar.js';
 
 const subdirectories = {
   'now-playing-movies': 'movie/now_playing',
@@ -32,6 +33,7 @@ function renderContentMovies() {
   displayShow(subdir, pageNumber);
   const title = toTitleCase(contentParam);
   document.querySelector('.main-title h1').textContent = title;
+  searchBar();
 }
 
 async function displayShow(subdir, pageNumber) {

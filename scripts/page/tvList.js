@@ -1,6 +1,7 @@
 import { sliders } from '../utils/sliders.js';
 import { fetchMovieData } from '../../data/fetchMovie.js';
-import { formatRunTime, formatVote } from '../utils/formatDate.js';
+import { formatVote } from '../utils/formatDate.js';
+import { searchBar } from '../utils/searchBar.js';
 
 const dataList = [
   {
@@ -33,6 +34,7 @@ function renderMovieList() {
   dataList.forEach(async data => {
     await renderSectionContent(data);
   });
+  searchBar();
 }
 
 async function renderSectionContent(data) {

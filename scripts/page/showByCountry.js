@@ -1,6 +1,7 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { controlPage } from '../utils/pageControl.js';
 import { formatVote, formatRunTime } from '../utils/formatDate.js';
+import { searchBar } from '../utils/searchBar.js';
 
 function renderShowByCountry() {
   const url = new URL(window.location.href);
@@ -10,6 +11,7 @@ function renderShowByCountry() {
   const pageNumber = params.get('page');
   
   showByCountry(country, countryCode, pageNumber);
+  searchBar();
 }
 
 async function showByCountry(country, countryCode, pageNumber) {
