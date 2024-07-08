@@ -2,12 +2,12 @@ import { sliders } from "./utils/sliders.js";
 import { fetchMovieData } from "../data/fetchMovie.js";
 import { formatDate, formatRunTime, formatVote } from "./utils/formatDate.js";
 
-function renderLandingPage() {
+async function renderLandingPage() {
   
-  nowPlayingMovies();
-  trendingMovies();
-  popularMovies();
-  popularSeries();
+  await nowPlayingMovies();
+  await trendingMovies();
+  await popularMovies();
+  await popularSeries();
   discoverMovie();
 };
 

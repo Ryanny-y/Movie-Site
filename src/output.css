@@ -889,6 +889,10 @@ video {
   padding-top: 7rem;
 }
 
+.pt-0 {
+  padding-top: 0px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1000,6 +1004,14 @@ video {
     gap: 5rem;
   }
 
+  .sm\:pt-20 {
+    padding-top: 5rem;
+  }
+
+  .sm\:pt-0 {
+    padding-top: 0px;
+  }
+
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -1059,6 +1071,10 @@ video {
 
   .\32xl\:pt-28 {
     padding-top: 7rem;
+  }
+
+  .\32xl\:pt-20 {
+    padding-top: 5rem;
   }
 
   .\32xl\:text-2xl {
