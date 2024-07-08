@@ -2,6 +2,7 @@ import { sliders } from "./utils/sliders.js";
 import { fetchMovieData } from "../data/fetchMovie.js";
 import { formatDate, formatRunTime, formatVote } from "./utils/formatDate.js";
 import { searchBar } from './utils/searchBar.js';
+import { showMovieDetail } from "./utils/movieDetail.js";
 
 async function renderLandingPage() {
   
@@ -11,6 +12,7 @@ async function renderLandingPage() {
   await popularSeries();
   await discoverMovie();
   searchBar();
+  showMovieDetail();
 };
 
 async function nowPlayingMovies() {
@@ -20,7 +22,7 @@ async function nowPlayingMovies() {
 
   const nowPlayingHTML = filteredList.map(movie => {
     return `
-    <div class="swiper-slide" style="height: auto !important;">
+    <div class="swiper-slide _movie" style="height: auto !important;" data-movie-id="${movie.id}">
       <div class="movie flex items-center gap-6 h-full">
         <div class="w-16 h-24">
           <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-sm">
@@ -57,7 +59,7 @@ async function trendingMovies() {
     }).join('');
 
     return `
-    <div class="swiper-slide" style="height: auto !important;">
+    <div class="swiper-slide _movie" style="height: auto !important;" data-movie-id="${movie.id}">
       <div class="movie flex flex-col gap-2 justify-between h-full relative">
         <p class="absolute top-3 left-3 text-xs"><i class="far fa-clock"></i> ${formatTime}</p>
         <p class="absolute top-3 right-3 text-xs"><i class="fa-solid fa-star text-yellow-400"></i> ${formatVote(movie['vote_average'])}</p>
@@ -92,7 +94,7 @@ async function popularMovies() {
     const { runtime } = data;
     
     return `
-    <div class="swiper-slide" style="height: auto !important;">
+    <div class="swiper-slide _movie" style="height: auto !important;" data-movie-id="${movie.id}">
       <div class="movie flex flex-col gap-2 justify-between h-full relative">
         <div class="h-80 w-full">
           <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
@@ -123,7 +125,7 @@ async function popularSeries() {
     const { number_of_seasons: season, number_of_episodes: episodes } = data;
     
     return `
-    <div class="swiper-slide" style="height: auto !important;">
+    <div class="swiper-slide _tv" style="height: auto !important;">
       <div class="series flex flex-col gap-2 justify-between h-full relative">
         <div class="h-80 w-full">
           <img src="https://image.tmdb.org/t/p/w500${series['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
@@ -154,7 +156,7 @@ async function discoverMovie() {
     const { runtime } = data;
     
     return `
-    <div class="swiper-slide" style="height: auto !important;">
+    <div class="swiper-slide _movie" style="height: auto !important;" data-movie-id="${movie.id}">
       <div class="movie flex flex-col gap-2 justify-between h-full relative">
         <div class="h-80 w-full">
           <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">

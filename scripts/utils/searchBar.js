@@ -1,5 +1,6 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatRunTime } from './formatDate.js';
+import { showMovieDetail } from './movieDetail.js';
 
 export function searchBar() {
   const searchinput = document.querySelector('.search-input');
@@ -24,6 +25,7 @@ export function searchBar() {
     if(val) {
       await searchMovie(val);
       searchContainer.classList.remove('hidden');
+      showMovieDetail();
     } else {
       searchContainer.classList.add('hidden');
     }
@@ -39,7 +41,7 @@ async function searchMovie(inputVal) {
     const detail = await fetchMovieData(`movie/${movie.id}`);
 
     return `
-      <div class="search-container flex gap-2 bg-white rounded-md py-2 px-3">
+      <div class="search-container _movie flex gap-2 bg-white rounded-md py-2 px-3" data-movie-id="${movie.id}">
         <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="Movie Thumbnail" class="h-16 w-14">
         <div class="flex flex-col gap-1">
           <p class="text-base">${movie.title}</p>

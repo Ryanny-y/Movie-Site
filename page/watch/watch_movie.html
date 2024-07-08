@@ -2,10 +2,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Show By Country</title>
+  <title>Watch Movie</title>
   <!-- STYLES -->
-  <link rel="stylesheet" href="../src/output.css">
-  <link rel="stylesheet" href="../src/styles/view-all.css">
+  <link rel="stylesheet" href="../../src/output.css">
+  <link rel="stylesheet" href="../../src/styles/view-all.css">
 
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,8 +14,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 </head>
-<body class="bg-black text-white font-Poppins pb-20 w-full">
+<body class="bg-black text-white font-Poppins pb-20 pt-28 md:pt-20 2xl:pt-28">
   <!-- HEADER -->
   <section class="header bg-black py-5 2xl:h-28 fixed top-0 left-0 right-0 z-50">
     <header class="container flex flex-col-reverse md:flex-row items-center justify-end gap-6 text-sm 2xl:text-base">
@@ -39,25 +40,54 @@
       </div>
     </header>
   </section>
+  
+  <main class="flex flex-col gap-10 pt-10">
+    <!-- VIDEO CONTAINER -->
+    <section class="video-container container">
+      <iframe src="" frameborder="0" class="w-full" style="height: 500px;"></iframe>      
+    </section>
 
-  <main class="container flex flex-col gap-5 pt-28 md:pt-20">
-    <div class="main-title">
-      <h1 class="font-bold text-3xl"></h1>
-    </div>
+    <!-- MOVIE DETAILS -->
+    <section class="movie-details">
+      <div class="container flex gap-5">
+        <div class="movie-poster min-w-40 w-full md:h-96 md:w-80 md:min-w-80">
+          <img src="" alt="Movie Poster" class="h-72 md:h-full w-full rounded-md">
+        </div>
 
-    <div class="show-container">
-     
-    </div>
+        <div class="details flex flex-col flex-grow gap-10 md:gap-16 flex-wrap">
+          <div class="flex w-full items-center justify-between flex-wrap">
+            <p class="text-2xl font-semibold title"></p>
+            <a href="" class="watch-trailer bg-red p-3 rounded-md text-sm"><i class="fa-solid fa-play mr-1"></i> Watch Trailer</a>
+          </div>
 
-    <div class="page-control flex items-center justify-center gap-2 mt-2">
-      <button class="prev-page-btn text-xl p-2"><i class="fa-solid fa-chevron-left"></i></button>
-      <p class="page-number text-2xl text-red font-semibold">0</p>
-      <button class="next-page-btn text-xl p-2"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
+          <div class="flex flex-col gap-5">
+            <div class="flex items-center gap-2 flex-wrap">
+              <div class="genres flex items-center text-black gap-2 text-sm font-bold">
+                <p class="bg-white p-2 rounded-md "></p>
+                <p class="bg-white p-2 rounded-md "></p>
+              </div>
+
+              <p class="flex release_year items-center gap-2"></p>
+              <p class="flex runtime items-center gap-2"></p>
+              <p class="flex average items-center gap-2"></p>
+            </div>
+            
+            <p class="plot text-sm"></p>
+
+            <div class="other_details flex flex-col gap-1 text-sm">
+              
+            </div>
+          </div>
+
+          
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- JAVASCRIPT -->
-  <script type="module" src="../../scripts/page/showByCountry.js"></script>
-
+  <script type="module" src="../../scripts/page/watch/watchMovie.js"></script>
 </body>
 </html>
