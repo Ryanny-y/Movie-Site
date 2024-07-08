@@ -1,5 +1,6 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
-import { formatVote, formatRunTime } from '../utils/formatDate.js'; 
+import { formatVote, formatRunTime } from '../utils/formatDate.js';
+import { controlPage } from '../utils/pageControl.js';
 
 const subdirectories = {
   'now-playing-movies': 'movie/now_playing',
@@ -25,15 +26,12 @@ function renderContentMovies() {
     if(contentParam === dir) {
       subdir = subdirectories[dir];
       break;
-    } else {
-      subdir = '';
     }
   }
 
   displayShow(subdir, pageNumber);
   const title = toTitleCase(contentParam);
   document.querySelector('.main-title h1').textContent = title;
-  
 }
 
 async function displayShow(subdir, pageNumber) {
@@ -75,31 +73,6 @@ function toTitleCase(str) {
   return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
 }
 
-function controlPage(pageNumber) {
-  const pageNumberEl = document.querySelector('.page-number');
-  const prevBtn = document.querySelector('.prev-page-btn');
-  const nextBtn = document.querySelector('.next-page-btn');
-  pageNumberEl.textContent = pageNumber;
-  const url = new URL(window.location.href);
-  const searchParams = url.searchParams;
-
-  nextBtn.addEventListener('click', () => {
-    const nextPage = Number(pageNumber) + 1;
-    searchParams.set('page', nextPage);
-    url.search = searchParams.toString();
-    window.location.href = url.toString();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    if(pageNumber > 1) {
-      const prevPage = Number(pageNumber) - 1;
-      searchParams.set('page', prevPage);
-      url.search = searchParams.toString();
-      window.location.href = url.toString();
-    }
-  });
-
-}
 
 window.addEventListener('load', () => {
   renderContentMovies();
