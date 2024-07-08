@@ -1,6 +1,7 @@
 import { fetchMovieData } from '../../../data/fetchMovie.js';
 import { fetchVideo } from '../../../data/fetchVideo.js';
 import { formatRunTime, formatDate, formatVote } from '../../utils/formatDate.js';
+import { searchBar } from '../../utils/searchBar.js';
 
 async function renderWatchMovie() {
   const url = new URL(window.location.href);
@@ -9,6 +10,8 @@ async function renderWatchMovie() {
 
   await loadVideo(id)
   await displayMovieDetails(id);
+
+  searchBar();
 }
 
 async function loadVideo(id) {

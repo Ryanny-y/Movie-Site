@@ -9,7 +9,10 @@ export function searchBar() {
   searchBtn.addEventListener('click', () => {
     const inputValue = searchinput.value;
     searchMovie(inputValue);
-    const dirPath = document.title === 'R***ny Movies' ? 'page/' : './';
+    const dirPath = document.title === 'R***ny Movies' ? 'page/' 
+    : 'Watch Movie' || 'Watch Series' ? '../'
+    : './';
+
     window.open(`${dirPath}search-movie.html?search=${inputValue}&page=1`)
   });
 
@@ -17,9 +20,13 @@ export function searchBar() {
     const val = e.target.value;
     const searchContainer = document.querySelector('.searched-movies');
     if(e.key === 'Enter') {
-      searchMovie(val);
-      const dirPath = document.title === 'R***ny Movies' ? 'page/' : './';
-      window.open(`${dirPath}search-movie.html?search=${val}&page=1`)
+      const inputValue = searchinput.value;
+      searchMovie(inputValue);
+      const dirPath = document.title === 'R***ny Movies' ? 'page/' 
+      : 'Watch Movie' || 'Watch Series' ? '../'
+      : './';
+
+      window.open(`${dirPath}search-movie.html?search=${inputValue}&page=1`)
     }
 
     if(val) {
