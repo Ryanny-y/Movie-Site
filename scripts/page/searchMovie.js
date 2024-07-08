@@ -1,6 +1,6 @@
 import { fetchMovieData } from "../../data/fetchMovie.js";
 import { controlPage } from '../utils/pageControl.js';
-import { formatDate, formatVote, formatRunTime } from "../utils/formatDate.js";
+import { formatVote, formatRunTime } from "../utils/formatDate.js";
 
 function showByGenre() {
   renderShow();
@@ -9,18 +9,15 @@ function showByGenre() {
 async function renderShow() {
   const url = new URL(window.location.href);
   const params = url.searchParams;
-  const genreName = params.get('genre-name');
-  const genreId = params.get('genre-id');
+  const search = params.get('search');
   const pageNumber = params.get('page');
-  const showType = params.get('show-type');
-  const isSeries = showType === 'tv';
 
-  const movieData = await fetchMovieData(`discover/${isSeries?'tv':'movie'}?include_adult=false&include_video=false&language=en-US&page=${pageNumber}&sort_by=popularity.desc&with_genres=${genreId}`);
+  const movieData = await fetchMovieData(`search/movie?query=${search}&include_adult=false&language=en-US&page=${pageNumber}`);
   const movieResult = movieData.results;
   const showWrapperHTML = await Promise.all(movieResult.map(async show => {
-    const detail = await fetchMovieData(`${isSeries ? 'tv' : 'movie'}/${show.id}`)
-    const title = isSeries ? show.name : show.title;
-    const runtime = isSeries ? `S ${detail.number_of_seasons}/EP ${detail.number_of_episodes}` : formatRunTime(detail.runtime);
+    const detail = await fetchMovieData(`movie/${show.id}`)
+    const title =  show.title;
+    const runtime = formatRunTime(detail.runtime);
 
     return `
     <div class="w-full rounded-md bg-gray-700">
@@ -40,7 +37,7 @@ async function renderShow() {
   }));
   
   document.querySelector('.show-container').innerHTML = showWrapperHTML.join('');
-  document.querySelector('.main-title h1').textContent = genreName;
+  document.querySelector('.main-title h1').textContent = `Search Result for ${search.replace(search.charAt(0), search.charAt(0).toUpperCase())}`;
   controlPage(pageNumber);
 }
 

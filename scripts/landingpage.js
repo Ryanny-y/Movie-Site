@@ -1,6 +1,7 @@
 import { sliders } from "./utils/sliders.js";
 import { fetchMovieData } from "../data/fetchMovie.js";
 import { formatDate, formatRunTime, formatVote } from "./utils/formatDate.js";
+import { searchBar } from './utils/searchBar.js';
 
 async function renderLandingPage() {
   
@@ -8,7 +9,8 @@ async function renderLandingPage() {
   await trendingMovies();
   await popularMovies();
   await popularSeries();
-  discoverMovie();
+  await discoverMovie();
+  searchBar();
 };
 
 async function nowPlayingMovies() {
@@ -58,7 +60,7 @@ async function trendingMovies() {
     <div class="swiper-slide" style="height: auto !important;">
       <div class="movie flex flex-col gap-2 justify-between h-full relative">
         <p class="absolute top-3 left-3 text-xs"><i class="far fa-clock"></i> ${formatTime}</p>
-        <p class="absolute top-3 right-3 text-xs"><i class="fa-solid fa-star"></i> ${formatVote(movie['vote_average'])}</p>
+        <p class="absolute top-3 right-3 text-xs"><i class="fa-solid fa-star text-yellow-400"></i> ${formatVote(movie['vote_average'])}</p>
 
         <div class="h-72 w-full">
           <img src="https://image.tmdb.org/t/p/w500${movie['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">
@@ -100,7 +102,7 @@ async function popularMovies() {
           <p class="title font-semibold text-xl 2xl:text-2xl">${movie.title}</p>
 
           <div class="genre text-end text-xs flex items-center pt-2 gap-2">
-            <p><i class="fa-solid fa-star"></i> ${formatVote(movie['vote_average'])}</p>
+            <p><i class="fa-solid fa-star text-yellow-400"></i> ${formatVote(movie['vote_average'])}</p>
             <p><i class="far fa-clock"></i> ${formatRunTime(runtime)}</p>
           </div>
         </div>
@@ -131,7 +133,7 @@ async function popularSeries() {
           <p class="title font-semibold text-xl 2xl:text-2xl">${series.name}</p>
 
           <div class="genre text-end text-xs flex items-center pt-2 gap-2">
-            <p><i class="fa-solid fa-star"></i> ${formatVote(series['vote_average'])}</p>
+            <p><i class="fa-solid fa-star text-yellow-400"></i> ${formatVote(series['vote_average'])}</p>
             <p>Series/S ${season}/EP ${episodes}</p>
           </div>
         </div>
@@ -162,7 +164,7 @@ async function discoverMovie() {
           <p class="title font-semibold text-xl 2xl:text-2xl">${movie.title}</p>
 
           <div class="genre text-end text-xs flex items-center pt-2 gap-2">
-            <p><i class="fa-solid fa-star"></i> ${formatVote(movie['vote_average'])}</p>
+            <p><i class="fa-solid fa-star text-yellow-400"></i> ${formatVote(movie['vote_average'])}</p>
             <p><i class="far fa-clock"></i> ${formatRunTime(runtime)}</p>
           </div>
         </div>
