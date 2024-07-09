@@ -2,16 +2,18 @@ import { fetchMovieData } from '../../data/fetchMovie.js';
 import { controlPage } from '../utils/pageControl.js';
 import { formatVote, formatRunTime } from '../utils/formatDate.js';
 import { searchBar } from '../utils/searchBar.js';
+import { showMovieDetail } from '../utils/movieDetail.js';
 
-function renderShowByCountry() {
+async function renderShowByCountry() {
   const url = new URL(window.location.href);
   const params = url.searchParams;
   const country = params.get('country');
   const countryCode = params.get('country-code');
   const pageNumber = params.get('page');
   
-  showByCountry(country, countryCode, pageNumber);
   searchBar();
+  await showByCountry(country, countryCode, pageNumber);
+  showMovieDetail();
 }
 
 async function showByCountry(country, countryCode, pageNumber) {
@@ -24,7 +26,7 @@ async function showByCountry(country, countryCode, pageNumber) {
     const runtime = formatRunTime(detail.runtime);
 
     return `
-    <div class="w-full rounded-md bg-gray-700">
+    <div class="w-full rounded-md bg-gray-700 _movie" data-movie-id=${show.id}>
       <div class="h-64">
         <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="movie poster" class="h-full w-full rounded-md">
       </div>

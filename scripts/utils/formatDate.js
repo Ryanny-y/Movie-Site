@@ -9,4 +9,4 @@ export const formatRunTime = (runtime) => {
   return `${hours}:${minutes}:00`;
 }
 
-export const formatVote = (vote) => vote.toFixed(1); 
+export const formatVote = (vote) => vote ? vote.toFixed(1) : `No Rating`; 

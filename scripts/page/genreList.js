@@ -2,7 +2,7 @@ import { fetchMovieData } from '../../data/fetchMovie.js';
 import { searchBar } from '../utils/searchBar.js';
 
 async function renderGenres() {
-  
+  searchBar();
   await movieGenres();
   await tvGenres();
   
@@ -13,8 +13,6 @@ async function renderGenres() {
       window.location.href = `./show-by-genre.html?show-type=${showType}&genre-id=${genreId}&genre-name=${genreName}&page=1`;
     });
   })
-
-  searchBar();
 }
 
 async function movieGenres() {

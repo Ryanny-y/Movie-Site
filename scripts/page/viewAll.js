@@ -1,5 +1,6 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatVote, formatRunTime } from '../utils/formatDate.js';
+import { showMovieDetail } from '../utils/movieDetail.js';
 import { controlPage } from '../utils/pageControl.js';
 import { searchBar } from '../utils/searchBar.js';
 
@@ -17,7 +18,7 @@ const subdirectories = {
   'top-rated-tv': 'tv/top_rated'
 };
 
-function renderContentMovies() {
+async function renderContentMovies() {
   const url = new URL(window.location.href);
   const params = url.searchParams;
   const contentParam = params.get('content');
@@ -29,11 +30,11 @@ function renderContentMovies() {
       break;
     }
   }
-
-  displayShow(subdir, pageNumber);
+  searchBar();
+  await displayShow(subdir, pageNumber);
   const title = toTitleCase(contentParam);
   document.querySelector('.main-title h1').textContent = title;
-  searchBar();
+  showMovieDetail();
 }
 
 async function displayShow(subdir, pageNumber) {
@@ -51,7 +52,7 @@ async function displayShow(subdir, pageNumber) {
     const runtime = isSeries ? `S ${detail.number_of_seasons}/EP ${detail.number_of_episodes}` : formatRunTime(detail.runtime);
 
     return `
-    <div class="w-full rounded-md bg-gray-700">
+    <div class="w-full rounded-md bg-gray-700 ${isSeries ? '_tv' : '_movie'}" ${isSeries ? `data-tv-id="${show.id}"` : `data-movie-id="${show.id}"`}>
       <div class="h-64">
         <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="movie poster" class="h-full w-full rounded-md">
       </div>

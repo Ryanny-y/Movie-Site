@@ -2,10 +2,12 @@ import { fetchMovieData } from "../../data/fetchMovie.js";
 import { controlPage } from '../utils/pageControl.js';
 import { formatVote, formatRunTime } from "../utils/formatDate.js";
 import { searchBar } from '../utils/searchBar.js';
+import { showMovieDetail } from "../utils/movieDetail.js";
 
-function showByGenre() {
-  renderShow();
+async function showByGenre() {
   searchBar();
+  await renderShow();
+  showMovieDetail();
 }
 
 async function renderShow() {
@@ -25,7 +27,7 @@ async function renderShow() {
     const runtime = isSeries ? `S ${detail.number_of_seasons}/EP ${detail.number_of_episodes}` : formatRunTime(detail.runtime);
 
     return `
-    <div class="w-full rounded-md bg-gray-700">
+    <div class="w-full rounded-md bg-gray-700 ${isSeries ? '_tv' : '_movie'}" ${isSeries ? `data-tv-id="${show.id}"` : `data-movie-id="${show.id}"`}>
       <div class="h-64">
         <img src="https://image.tmdb.org/t/p/w500${show.poster_path}" alt="movie poster" class="h-full w-full rounded-md">
       </div>

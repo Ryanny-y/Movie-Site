@@ -2,6 +2,7 @@ import { fetchMovieData } from '../../data/fetchMovie.js';
 import { searchBar } from '../utils/searchBar.js';
 
 async function renderCountryList() {
+  searchBar();
   const countryList = await fetchMovieData('configuration/countries');
   const list = ['United States of America', 'united kingdom', 'canada', 'brazil', 'new zealand', 'france', 'spain', 'australia', 'ireland', 'italy', 'japan', 'switzerland', 'denmark', 'belgium', 'philippines'];
   const filteredList = list.map(country => {
@@ -26,7 +27,6 @@ async function renderCountryList() {
     })
   })
 
-  searchBar();
 };
 
 

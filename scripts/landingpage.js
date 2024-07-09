@@ -6,12 +6,12 @@ import { showMovieDetail } from "./utils/movieDetail.js";
 
 async function renderLandingPage() {
   
+  searchBar();
   await nowPlayingMovies();
   await trendingMovies();
   await popularMovies();
   await popularSeries();
   await discoverMovie();
-  searchBar();
   showMovieDetail();
 };
 

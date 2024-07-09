@@ -2,6 +2,7 @@ import { sliders } from '../utils/sliders.js';
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatRunTime, formatVote } from '../utils/formatDate.js';
 import { searchBar } from '../utils/searchBar.js';
+import { showMovieDetail } from '../utils/movieDetail.js';
 
 const dataList = [
   {
@@ -31,11 +32,11 @@ const dataList = [
 ]
 
 function renderMovieList() {
+  searchBar();
   dataList.forEach(async data => {
     await renderSectionContent(data);
+    showMovieDetail();
   });
-
-  searchBar();
 }
 
 async function renderSectionContent(data) {
@@ -75,7 +76,7 @@ async function nowPlayingMovies(data) {
     const detail = await fetchMovieData(`movie/${movie.id}`);
 
     return `
-    <div class="swiper-slide" style="height: auto !important;">
+    <div class="swiper-slide _movie" style="height: auto !important;" data-movie-id="${movie.id}">
       <div class="h-full rounded-md bg-gray-700">
         <div class="h-64">
           <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="movie poster" class="h-full w-full rounded-md">

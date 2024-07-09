@@ -31,10 +31,10 @@ const dataList = [
 ]
 
 function renderMovieList() {
+  searchBar();
   dataList.forEach(async data => {
     await renderSectionContent(data);
   });
-  searchBar();
 }
 
 async function renderSectionContent(data) {
