@@ -2,10 +2,9 @@ import { sliders } from "./utils/sliders.js";
 import { fetchMovieData } from "../data/fetchMovie.js";
 import { formatDate, formatRunTime, formatVote } from "./utils/formatDate.js";
 import { searchBar } from './utils/searchBar.js';
-import { showMovieDetail } from "./utils/movieDetail.js";
+import { showMovieDetail, showSeriesDetail } from "./utils/movieDetail.js";
 
 async function renderLandingPage() {
-  
   searchBar();
   await nowPlayingMovies();
   await trendingMovies();
@@ -13,6 +12,7 @@ async function renderLandingPage() {
   await popularSeries();
   await discoverMovie();
   showMovieDetail();
+  showSeriesDetail();
 };
 
 async function nowPlayingMovies() {
@@ -119,13 +119,14 @@ async function popularSeries() {
   const getSeries = await fetchMovieData('tv/popular');
   const seriesList = getSeries.results;
   const filteredList = seriesList.slice(0, 12);
+  console.log(filteredList[0]);
   
   const popularSeriesHTML = await Promise.all(filteredList.map(async series => {
     const data = await fetchMovieData(`tv/${series.id}`);
     const { number_of_seasons: season, number_of_episodes: episodes } = data;
     
     return `
-    <div class="swiper-slide _tv" style="height: auto !important;">
+    <div class="swiper-slide _tv" style="height: auto !important;" data-tv-id="${series.id}">
       <div class="series flex flex-col gap-2 justify-between h-full relative">
         <div class="h-80 w-full">
           <img src="https://image.tmdb.org/t/p/w500${series['poster_path']}" alt="" class="h-full w-full max-w-full rounded-md">

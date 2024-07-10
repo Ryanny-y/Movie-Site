@@ -1,6 +1,6 @@
 import { fetchMovieData } from '../../data/fetchMovie.js';
 import { formatVote, formatRunTime } from '../utils/formatDate.js';
-import { showMovieDetail } from '../utils/movieDetail.js';
+import { showMovieDetail, showSeriesDetail } from '../utils/movieDetail.js';
 import { controlPage } from '../utils/pageControl.js';
 import { searchBar } from '../utils/searchBar.js';
 
@@ -34,6 +34,7 @@ async function renderContentMovies() {
   await displayShow(subdir, pageNumber);
   const title = toTitleCase(contentParam);
   document.querySelector('.main-title h1').textContent = title;
+  showSeriesDetail();
   showMovieDetail();
 }
 

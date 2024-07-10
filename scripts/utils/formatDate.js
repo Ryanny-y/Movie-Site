@@ -6,6 +6,10 @@ export const formatRunTime = (runtime) => {
   let hours = Math.floor(runtime / 60);
   let minutes = runtime % 60;
 
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+
   return `${hours}:${minutes}:00`;
 }
 
