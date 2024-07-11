@@ -34,7 +34,7 @@ async function heroMovies() {
       const genreHTML = genreNames.map(name => {
         return `<p class="bg-red p-2 rounded-lg">${name}</p>`;
       }).join('');
-
+// add comment
       return `
       <div class="swiper-slide relative">
         <div class="absolute top-0 h-full left-0 w-full" style="background: url('https://image.tmdb.org/t/p/w500${movie['poster_path']}') center / auto no-repeat;"></div>
