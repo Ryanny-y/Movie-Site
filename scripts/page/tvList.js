@@ -84,7 +84,7 @@ async function nowPlayingMovies(data) {
         </div>
   
         <div class="details p-2 flex flex-col gap-2">
-          <button class="flex items-center justify-center gap-1 text-center font-semibold bg-red py-2 text-sm rounded-sm"><i class="fa-solid fa-play"></i> Watch Trailer</button>
+          <button class="flex items-center justify-center gap-1 text-center font-semibold bg-red py-2 text-sm rounded-sm"><i class="fa-solid fa-play"></i> Watch Now</button>
           <p>${tv.name}</p>
           <div class="flex justify-between">
             <p class="flex items-center gap-1"><i class="fa-solid fa-star text-xs text-yellow-400"></i> ${formatVote(tv.vote_average)}</p>
