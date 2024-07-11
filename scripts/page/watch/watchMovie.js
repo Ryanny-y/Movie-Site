@@ -11,7 +11,7 @@ async function renderWatchMovie() {
   const id = params.get('id');
   
   searchBar();
-  // loadVideo(id)
+  loadVideo(id)
   await displayMovieDetails(id);
   await renderRecommendation(id);
   showMovieDetail();

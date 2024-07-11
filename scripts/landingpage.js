@@ -6,6 +6,7 @@ import { showMovieDetail, showSeriesDetail } from "./utils/movieDetail.js";
 
 async function renderLandingPage() {
   searchBar();
+  await heroMovies();
   await nowPlayingMovies();
   await trendingMovies();
   await popularMovies();
@@ -14,6 +15,68 @@ async function renderLandingPage() {
   showMovieDetail();
   showSeriesDetail();
 };
+
+async function heroMovies() {
+  try {
+    const getMovie = await fetchMovieData('movie/top_rated');
+    const movieList = getMovie.results;
+    const filteredList = movieList.slice(0, 5);
+
+    const heroHTML = (await Promise.all(filteredList.map(async movie => {
+      const data = await fetchMovieData(`movie/${movie.id}`);
+      const genres = data.genres.slice(0, 3);
+      const { runtime } = data;
+      const formatTime = formatRunTime(runtime);
+
+      const genreNames = genres.map(genre => {
+        return genre.name;
+      })
+      const genreHTML = genreNames.map(name => {
+        return `<p class="bg-red p-2 rounded-lg">${name}</p>`;
+      }).join('');
+
+      return `
+      <div class="swiper-slide relative">
+        <div class="absolute top-0 h-full left-0 w-full" style="background: url('https://image.tmdb.org/t/p/w500${movie['poster_path']}') center / auto no-repeat;"></div>
+        <div class="absolute top-0 h-full left-0 w-full" style="background: rgba(0,0,0,.4);"></div>
+
+        <div class="absolute top-0 left-0 right-0 container h-full flex flex-col justify-end py-5 gap-5 sm:gap-20 z-20">
+          <div class="watch-btns flex flex-wrap items-center gap-5 md:gap-11 justify-center">
+            <a href="page/watch/watch_movie.html?id=${movie.id}" target="_blank" class="flex items-center justify-center gap-2 bg-red text-white p-5 font-bold rounded-md">
+              <p class="text-nowrap">Watch Now</p>
+              <i class="fa-solid fa-circle-play text-white text-xl"></i>
+            </a>
+          </div>
+
+          <div class="movie-details flex flex-col gap-3 w-full lg:w-1/2">
+            <h1 class="title font-bold text-3xl">${movie.title}</h1>
+
+            <div class="other flex flex-col lg:flex-row lg:items-center gap-4">
+              <div class="genre font-bold text-xs sm:text-base 2xl:text-base flex items-center gap-2">
+                ${genreHTML}
+              </div>
+
+              <div class="flex items-center gap-4 text-white text-sm 2xl:text-base">
+                <p><i class="fa-solid fa-calendar-days text-xs"></i> ${movie['release_date'].slice(0, 4)}</p>
+                <p><i class="fa-solid fa-clock text-xs"></i> ${formatTime}</p>
+                <p><i class="fa-solid fa-star text-xs"></i> ${movie.vote_average}</p>
+              </div>
+            </div>
+
+            <p class="plot text-sm 2xl:text-base text-justify">Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.</p>
+          </div>
+        </div>
+      </div>
+      `
+    }))).join('');
+
+    document.querySelector('.swiper.hero .swiper-wrapper').innerHTML = heroHTML;
+
+    sliders.heroSlider();
+  } catch (error) {
+    
+  }
+}
 
 async function nowPlayingMovies() {
   const getMovie = await fetchMovieData('movie/now_playing');
@@ -119,7 +182,6 @@ async function popularSeries() {
   const getSeries = await fetchMovieData('tv/popular');
   const seriesList = getSeries.results;
   const filteredList = seriesList.slice(0, 12);
-  console.log(filteredList[0]);
   
   const popularSeriesHTML = await Promise.all(filteredList.map(async series => {
     const data = await fetchMovieData(`tv/${series.id}`);

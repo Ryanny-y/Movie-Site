@@ -1,4 +1,9 @@
 class Sliders {
+  heroSlider(){
+    const data = this.data('.hero', '.swiper.hero', 1);
+    this.initSlider(data);
+  }
+  
   nowPlayingSlider(preview, gap) {
     const data = this.data('.now-playing', '.swiper.now-playing-movies', preview, gap)
     this.initSlider(data);
@@ -47,16 +52,25 @@ class Sliders {
         prevEl: `${data.section} .swiper-prev`,
       },
       slidesPerView: 1,
-      breakpoints: {
-        400: {
-          slidesPerView: 2,
-          spaceBetween: 20,
+      ...(data.section === '.hero' && {
+        loop: true,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
         },
-        768: {
-          slidesPerView: data.preview,
-          spaceBetween: data.gap,
+      }),
+      ...(data.section !== '.hero' && {
+        breakpoints: {
+          400: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: data.preview,
+            spaceBetween: data.gap,
+          },
         },
-      },
+      }),
       ...(data.style && {
         grid: {
           rows: 2,
@@ -67,12 +81,13 @@ class Sliders {
     
     nowPlayingSwiper.on('slideChange', () => {
       const sliderNav = document.querySelector(`${data.section} .slider-nav`);
-      const viewAllButton = sliderNav.querySelector('.view-all');
-  
-      if (nowPlayingSwiper.isEnd) {
-        viewAllButton.classList.remove('hidden');
-      } else {
-        viewAllButton.classList.add('hidden');
+      if(data.section !== '.hero') {
+        const viewAllButton = sliderNav.querySelector('.view-all');
+        if (nowPlayingSwiper.isEnd) {
+          viewAllButton.classList.remove('hidden');
+        } else {
+          viewAllButton.classList.add('hidden');
+        }
       }
     });
   }
