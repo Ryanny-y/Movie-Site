@@ -59,7 +59,7 @@ async function heroMovies() {
               <div class="flex items-center gap-4 text-white text-sm 2xl:text-base">
                 <p><i class="fa-solid fa-calendar-days text-xs"></i> ${movie['release_date'].slice(0, 4)}</p>
                 <p><i class="fa-solid fa-clock text-xs"></i> ${formatTime}</p>
-                <p><i class="fa-solid fa-star text-xs"></i> ${movie.vote_average}</p>
+                <p><i class="fa-solid fa-star text-xs text-yellow-400"></i> ${formatVote(movie.vote_average)}</p>
               </div>
             </div>
 
